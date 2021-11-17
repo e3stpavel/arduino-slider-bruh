@@ -1,6 +1,6 @@
 ДОБРО ПОЖАЛОВАТЬ ПОСОНЫ!!
 
-""ЧТОБЫ СОЗДАТЬ РЕП НУЖНО:""
+**ЧТОБЫ СОЗДАТЬ РЕП НУЖНО:**
 1. `git init` в папке с проектом
 2. `git remote add origin https://github.com/e3stpavel/arduino-slider-bruh.git` 
 3. `git branch -M название_брэнча` (название_брэнча пример task1, task2, ...)
