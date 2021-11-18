@@ -13,3 +13,8 @@ void loop()
 {
   
 }
+
+bool step_move(double speed, int distance_l, int distance_r, String start_from = "baNaN")
+{
+  
+}
