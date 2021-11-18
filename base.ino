@@ -18,7 +18,7 @@ void loop()
   
 }
 
-bool task1(double speed, int distance_l, int distance_r, String start_from = "baNaN")
+bool task1(double speed)
 {
   String local_state = "";
 
@@ -40,7 +40,6 @@ bool task1(double speed, int distance_l, int distance_r, String start_from = "ba
       {
         speed = Serial.read();
       }
-      start_from = Serial.read();
     }
 
   }
@@ -55,31 +54,14 @@ bool task1(double speed, int distance_l, int distance_r, String start_from = "ba
     // func calls
   }
 
-  // check speed and start_from variables
+  // check speed
   if (speed > 0)
   {
-    if (start_from != "baNaN") 
-    {
-      // user set starting point
-      if (start_from == "left")
-      {
-        // check if we are here in the side
-
-      }
-      else if (start_from == "rigth")
-      {
-        // check if we are here in the side
-
-      }
-    }
-    else
-    {
-
-    }
+    
   }
   else 
   {
-    Serial.print("ERROR");
+    Serial.print("ERROR! Speed not defined");
 
     // add to error global variable
 
