@@ -31,11 +31,8 @@ bool task1(double speed, int distance_l, int distance_r, String start_from = "ba
     // user calls
 
     // asks speed
-    // краи определяем по датчикам, у них фикс пины, 
-    // расстояние определяем по шаговому кртящиесю фигню
-    // создаем переменную и прибовляем к ней значения
-    // по заключению обнуляем
-     
+
+
   }
   else 
   {
