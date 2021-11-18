@@ -2,8 +2,6 @@
 
 // set up
 
-// lcd connection
-
 String GLOBAL_STATE = "";
 
 void setup()
@@ -18,7 +16,26 @@ void loop()
   
 }
 
-bool task1(double speed)
+/*
+ * The task 2 structure. Contains code (from 0 to 65,535) and status (Arduino String type) 
+ * 
+ * @author not defender
+ * @return struct
+ */
+struct task2_struct
+{
+  unsigned short code;
+  String status;
+};
+
+/*
+ * The task 2 main function.
+ * 
+ * @author not defender
+ * @param speed initial speed
+ * @return task2_struct
+ */ 
+task2_struct task2(double speed)
 {
   String local_state = "";
 
@@ -67,7 +84,10 @@ bool task1(double speed)
 
     // add to error global variable
 
-    return false;
+    task2_struct executed;
+    executed.code = 1;
+    executed.status = "speed not defined";
+    return executed;
   }
   
   
