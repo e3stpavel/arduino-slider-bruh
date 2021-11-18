@@ -61,12 +61,28 @@ bool task1(double speed, int distance_l, int distance_r, String start_from = "ba
     if (start_from != "baNaN") 
     {
       // user set starting point
-      
+      if (start_from == "left")
+      {
+        // check if we are here in the side
+
+      }
+      else if (start_from == "rigth")
+      {
+        // check if we are here in the side
+
+      }
+    }
+    else
+    {
+
     }
   }
   else 
   {
     Serial.print("ERROR");
+
+    // add to error global variable
+
     return false;
   }
   
