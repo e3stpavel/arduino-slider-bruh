@@ -34,13 +34,15 @@ bool task1(double speed)
     // NOTE: for now reading from serial
     
     // speed was not defined
-    if (GLOBAL_STATE == "task2")
+
+    
+    /*if (GLOBAL_STATE == "task2")
     {
       if (speed <= 0)
       {
         speed = Serial.read();
       }
-    }
+    }*/
 
   }
   else 
@@ -57,7 +59,7 @@ bool task1(double speed)
   // check speed
   if (speed > 0)
   {
-    
+    // check if 
   }
   else 
   {

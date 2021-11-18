@@ -1,4 +1,4 @@
-#include <LiquidCrystal.h> // lcd 16 02
+#include <LiquidCrystal.h> // lcd 16 02   I2C neeeds
 #include <Keypad.h> // membrannaja klava
 
 // maxon
