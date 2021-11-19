@@ -28,6 +28,10 @@ struct base
  */ 
 int get_distance_mockup(char sensor)
 {
+  // yeah i almost forgot that the random in c++ sucks a huuuge ORB's dick
+  //int distance = rand() % 100;
+
+  // use fixed value for testing instead
   int distance = rand() % 100;
 
   cout << "DISTANCE: " << distance << " sensor " << sensor << endl;
