@@ -29,10 +29,9 @@ struct base
 int get_distance_mockup(char sensor)
 {
   // yeah i almost forgot that the random in c++ sucks a huuuge ORB's dick
-  //int distance = rand() % 100;
+  int distance = rand() % 100;
 
   // use fixed value for testing instead
-  int distance = rand() % 100;
 
   cout << "DISTANCE: " << distance << " sensor " << sensor << endl;
 
@@ -100,6 +99,8 @@ base initial(float speed = 0)
   // getting the distance from left and right sensor
   int distance_L = get_distance_mockup('L');
   int distance_R = get_distance_mockup('R');
+  /*int distance_L = 2856;
+  int distance_R = 643;*/
 
   if (distance_L >= 0 && distance_L < 3)
   {
@@ -134,7 +135,7 @@ base initial(float speed = 0)
         // filling the return values
         executed.code = 1;
         executed.status = "Incorrect speed format!";
-        //return executed;
+        return executed;
       }
     }
     else
@@ -147,6 +148,20 @@ base initial(float speed = 0)
       // if he's insane, call task4's fucntion, if nah - say that he's ORBoIIOP
       if (desicion == 'y')
       {
+        cout << "Input the speed (can be float):" << endl;
+        cin >> speed;
+
+        if (speed <= 0)
+        {
+          // tell user that he's stupid
+          cout << "Speed must be more than 0 and can't be negative!" << endl;
+
+          // filling the return values
+          executed.code = 1;
+          executed.status = "Incorrect speed format!";
+          return executed;
+        }
+
         exec = task4_mockup(speed);
         if (!exec)
         {
@@ -156,7 +171,7 @@ base initial(float speed = 0)
           // filling the return values
           executed.code = 2;
           executed.status = "Another (task4) function aborted!";
-          //return executed;
+          return executed;
         }
 
         is_side = true;
@@ -170,7 +185,7 @@ base initial(float speed = 0)
         // filling the return values
         executed.code = 3;
         executed.status = "Incorrect position for operating!";
-        //return executed;
+        return executed;
       }
     }
   }
@@ -191,7 +206,7 @@ base initial(float speed = 0)
         // filling the return values
         executed.code = 1;
         executed.status = "Incorrect speed format!";
-        //return executed;
+        return executed;
       }
     }
     else 
@@ -201,7 +216,7 @@ base initial(float speed = 0)
       // filling the return values
       executed.code = 3;
       executed.status = "Incorrect position for operating!";
-      //return executed;
+      return executed;
     }
   }
 
@@ -229,7 +244,7 @@ base initial(float speed = 0)
       // filling the return values
       executed.code = 4;
       executed.status = "Another (task1) function aborted!";
-      //return executed;
+      return executed;
     }
 
     // we are finished with movements
