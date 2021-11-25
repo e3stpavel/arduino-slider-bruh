@@ -1,3 +1,33 @@
+// some local function to use 
+float input_speed(float in_speed)
+{
+  float out_speed = in_speed;
+  // write to LCD question and q-mark to MAX led
+  // lcd
+  lcd.setCursor(0, 0);
+  lcd.print("Input the speed");
+  lcd.setCursor(1, 0);
+  lcd.print("can be float");
+  // TODO: max
+  // poka len`
+
+  // wait input from keypad and remote controller
+  // keypad
+  char key = keypad.getKey();
+  String keys;
+  if (key)
+  {
+    keys += key;
+    out_speed = keys.toFloat();
+  }
+  // TODO: remote controller
+  // poka len`
+
+  Serial.println(out_speed);
+  
+  return out_speed;
+}
+
 /*
  * Task 2. Edge to edge function. Thing goes brrr from one side to another
  *
@@ -222,33 +252,4 @@ tsk edge_to_edge(float speed)
   }
 
   return executed;
-}
-
-float input_speed(float in_speed)
-{
-  float out_speed = in_speed;
-  // write to LCD question and q-mark to MAX led
-  // lcd
-  lcd.setCursor(0, 0);
-  lcd.print("Input the speed");
-  lcd.setCursor(1, 0);
-  lcd.print("can be float");
-  // TODO: max
-  // poka len`
-
-  // wait input from keypad and remote controller
-  // keypad
-  char key = keypad.getKey();
-  String keys;
-  if (key)
-  {
-    keys += key;
-    out_speed = keys.toFloat();
-  }
-  // TODO: remote controller
-  // poka len`
-
-  Serial.println(out_speed);
-  
-  return out_speed;
 }
