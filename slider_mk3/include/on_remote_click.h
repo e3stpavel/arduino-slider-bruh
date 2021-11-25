@@ -1,10 +1,11 @@
-#include <Arduino.h>
+/*
+ * Handles remote controller click action and depending on button clicked do something
+ *
+ * @author default
+ * @returns void
+ */
 
-/* for remote controller */
-#include "PinDefinitionsAndMore.h"
-#include <IRremote.hpp>
-
-void remote_click() 
+void on_remote_click() 
 {
   // Print a short summary of received data
   IrReceiver.printIRResultShort(&Serial);
