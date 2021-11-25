@@ -52,40 +52,14 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 #define CS 9
 LedControl lc = LedControl(DATA_PIN, CLK, CS, 1);
 
-void setup()
-{
-  // put your setup code here, to run once:
+// # global state declaration
+String GLOBAL_STATE;
 
-  // # initialize the lcd 
-  lcd.init();                      
-  lcd.backlight();
+// # global functions declaration goes here
+//#include <on_remote_click.cpp>
+//#include <on_keypad_tap.cpp>
 
-  // # initialize the max led
-  // wakeup
-  lc.shutdown(0, false);
-  // set the brightness to a medium values
-  lc.setIntensity(0,8);
-  // clear the display
-  lc.clearDisplay(0);
-
-  // # initialize the remote controller
-  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK, USE_DEFAULT_FEEDBACK_LED_PIN);
-  Serial.println(IR_RECEIVE_PIN);
-
-  // # begin serial monitor
-  Serial.begin(9600);
-}
-
-void loop()
-{
-  // put your main code here, to run repeatedly:
-
-  if (IrReceiver.decode())
-  {
-    remote_click();
-  }
-}
-
+// remote controller action on click
 void remote_click() 
 {
   // Print a short summary of received data
@@ -120,11 +94,48 @@ void remote_click()
   }
 }
 
+// keypad action on tap
 void on_tap()
 {
   char key = keypad.getKey();
   
   if (key){
     Serial.println(key);
+  }
+}
+
+void setup()
+{
+  // put your setup code here, to run once:
+
+  // # initialize the lcd 
+  lcd.init();                      
+  lcd.backlight();
+
+  // # initialize the max led
+  // wakeup
+  lc.shutdown(0, false);
+  // set the brightness to a medium values
+  lc.setIntensity(0,8);
+  // clear the display
+  lc.clearDisplay(0);
+
+  // # initialize the remote controller
+  IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK, USE_DEFAULT_FEEDBACK_LED_PIN);
+  Serial.println(IR_RECEIVE_PIN);
+
+  // # begin serial monitor
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // put your main code here, to run repeatedly:
+
+  on_tap();
+
+  if (IrReceiver.decode())
+  {
+    remote_click();
   }
 }
