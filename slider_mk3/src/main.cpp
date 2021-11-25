@@ -11,7 +11,7 @@
 /* for MAX led module */
 #include "LedControl.h"
 /* for remote controller */
-#include "PinDefinitionsAndMore.h"
+#include "helpers/PinDefinitionsAndMore.h"
 #include <IRremote.hpp>
 
 // # liquid crystal init
@@ -55,9 +55,19 @@ LedControl lc = LedControl(DATA_PIN, CLK, CS, 1);
 // # global state declaration
 String GLOBAL_STATE;
 
-// # global functions declaration goes here
-#include <on_remote_click.h>
-#include <on_keypad_tap.h>
+//// # global functions declaration goes here
+#include <funcs/on_remote_click.h>
+#include <funcs/on_keypad_tap.h>
+#include <funcs/get_ultrasonic_distance.h>
+
+//// # tasks base structure goes here, should fit for everyone
+#include <structure.h>
+
+//// # tasks functions should be here
+// #include <tasks/task1.h>
+#include <tasks/task2.h>
+// #include <tasks/task3.h>
+// ... etc
 
 void setup()
 {
