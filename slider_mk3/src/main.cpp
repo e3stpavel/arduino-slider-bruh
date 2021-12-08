@@ -104,5 +104,5 @@ void loop()
     on_remote_click();
   }*/
 
-  edge_to_edge(2.5);
+  edge_to_edge(2.5f);
 }

@@ -55,7 +55,8 @@ tsk edge_to_edge(float speed)
   int distance_L = get_ultrasonic_distance(1);
   int distance_R = get_ultrasonic_distance(0);
 
-  Serial.println(distance_L, distance_R);
+  Serial.println(distance_L);
+  Serial.println(distance_R);
 
   if (distance_L >= 0 && distance_L < 1)
   {
@@ -87,7 +88,7 @@ tsk edge_to_edge(float speed)
         lcd.clear();
         lcd.setCursor(0, 0);
         lcd.print("Speed must be");
-        lcd.setCursor(1, 0);
+        lcd.setCursor(0, 1);
         lcd.print("more than 0");
 
         // TODO: lc support
@@ -107,7 +108,7 @@ tsk edge_to_edge(float speed)
       // lcd
       lcd.setCursor(0, 0);
       lcd.print("Not on the edge");
-      lcd.setCursor(1, 0);
+      lcd.setCursor(0, 1);
       lcd.print("go to? y/n");
       // TODO: max
       // poka len`
@@ -146,7 +147,7 @@ tsk edge_to_edge(float speed)
           lcd.clear();
           lcd.setCursor(0, 0);
           lcd.print("Speed must be");
-          lcd.setCursor(1, 0);
+          lcd.setCursor(0, 1);
           lcd.print("more than 0");
 
           // TODO: add lc support as well 
@@ -173,7 +174,7 @@ tsk edge_to_edge(float speed)
         // lcd
         lcd.setCursor(0, 0);
         lcd.print("Not on the edge");
-        lcd.setCursor(1, 0);
+        lcd.setCursor(0, 1);
         lcd.print("Error!");
         // TODO: max
         // poka len`
@@ -200,7 +201,7 @@ tsk edge_to_edge(float speed)
         lcd.clear();
         lcd.setCursor(0, 0);
         lcd.print("Speed must be");
-        lcd.setCursor(1, 0);
+        lcd.setCursor(0, 1);
         lcd.print("more than 0");
 
         // TODO: lc support
