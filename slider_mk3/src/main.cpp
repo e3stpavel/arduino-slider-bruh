@@ -97,10 +97,12 @@ void loop()
 {
   // put your main code here, to run repeatedly:
 
-  on_keypad_tap();
+  /*on_keypad_tap();
 
   if (IrReceiver.decode())
   {
     on_remote_click();
-  }
+  }*/
+
+  edge_to_edge(2.5);
 }

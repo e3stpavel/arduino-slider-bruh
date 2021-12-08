@@ -118,6 +118,7 @@ tsk edge_to_edge(float speed)
       String keys;
       if (key)
       {
+        Serial.println(key);
         if (key == 'A')
         {
           // accept
