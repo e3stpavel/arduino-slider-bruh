@@ -104,5 +104,6 @@ void loop()
     on_remote_click();
   }*/
 
-  edge_to_edge(2.5f);
+  tsk br = edge_to_edge(2.5f);
+  Serial.println(br.status);
 }

@@ -4,6 +4,7 @@ float input_speed(float in_speed)
   float out_speed = in_speed;
   // write to LCD question and q-mark to MAX led
   // lcd
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Input the speed");
   lcd.setCursor(1, 0);
@@ -106,6 +107,7 @@ tsk edge_to_edge(float speed)
 
       // write to LCD message and ! mark to MAX led
       // lcd
+      lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Not on the edge");
       lcd.setCursor(0, 1);
@@ -172,6 +174,7 @@ tsk edge_to_edge(float speed)
       {
         // write to LCD message and ! mark to MAX led
         // lcd
+        lcd.clear();
         lcd.setCursor(0, 0);
         lcd.print("Not on the edge");
         lcd.setCursor(0, 1);
