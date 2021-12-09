@@ -59,13 +59,13 @@ tsk edge_to_edge(float speed)
   Serial.println(distance_L);
   Serial.println(distance_R);
 
-  if (distance_L >= 0 && distance_L < 1)
+  if (distance_L >= 0 && distance_L < 3)
   {
     // on the left side
     is_side = true;
     what_side = 'L';
   }
-  else if (distance_R >= 0 && distance_R < 1)
+  else if (distance_R >= 0 && distance_R < 3)
   {
     // on the right side
     is_side = true;
