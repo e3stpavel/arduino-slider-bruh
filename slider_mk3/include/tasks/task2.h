@@ -9,6 +9,7 @@ float input_speed(float in_speed)
   lcd.print("Input the speed");
   lcd.setCursor(1, 0);
   lcd.print("can be float");
+  delay(5000);
   // TODO: max
   // poka len`
 
@@ -24,6 +25,7 @@ float input_speed(float in_speed)
   // TODO: remote controller
   // poka len`
 
+  delay(2000);
   Serial.println(out_speed);
   
   return out_speed;
@@ -38,7 +40,7 @@ float input_speed(float in_speed)
  * @returns tsk
  */ 
 
-tsk edge_to_edge(float speed)
+tsk edge_to_edge(float speed = 0)
 {
   Serial.println(GLOBAL_STATE);
 
@@ -58,6 +60,9 @@ tsk edge_to_edge(float speed)
 
   Serial.println(distance_L);
   Serial.println(distance_R);
+
+  // debugging
+  delay(2000);
 
   if (distance_L >= 0 && distance_L < 3)
   {
@@ -117,9 +122,9 @@ tsk edge_to_edge(float speed)
 
       // wait input from keypad and remote controller
       // keypad
-      char key = keypad.getKey();
-      String keys;
-      if (key)
+      char key = on_keypad_tap();
+      delay(1000);
+      if (!isblank(key))
       {
         Serial.println(key);
         if (key == 'A')
@@ -136,10 +141,11 @@ tsk edge_to_edge(float speed)
       // TODO: remote controller 
       // poka len`
 
+      delay(1000);
       Serial.println(desicion);
 
       // if he's insane, call task4's fucntion, if nah - say that he's ORBoIIOP
-      if (desicion)
+      if (desicion == true)
       {
         speed = input_speed(speed);
 
@@ -162,7 +168,8 @@ tsk edge_to_edge(float speed)
 
         // TODO: task4 call
         //// hero goes the task 4 call ////
-
+        Serial.print("TASK4");
+        delay(1000);
         /// goes end of function check ///
 
         is_side = true;
@@ -219,6 +226,8 @@ tsk edge_to_edge(float speed)
     {
       // fuck off the function cuz position not defined
 
+      delay(2000);
+
       // filling the return values
       executed.code = 3;
       executed.status = "Incorrect position for operating!";
@@ -228,6 +237,11 @@ tsk edge_to_edge(float speed)
   
   // if speed is appropriate, we are on the edge and we specified the edge 
   char goto_side;
+
+  // debugging
+  delay(2000);
+  Serial.println(is_side);
+  Serial.println(what_side);
 
   if (speed > 0 && is_side && !isblank(what_side))
   {
@@ -241,9 +255,13 @@ tsk edge_to_edge(float speed)
       goto_side = 'R';
     }
     
+
+    delay(5000);
+    Serial.print(goto_side);
     // TODO: task1 call
     //// hero goes the task 1 call ////
-
+    Serial.print("TASK1");
+    delay(1000);
     /// goes end of function check ///
 
 

@@ -5,11 +5,13 @@
  * @returns void
  */ 
 
-void on_keypad_tap()
+char on_keypad_tap()
 {
   char key = keypad.getKey();
   
   if (key){
     Serial.println(key);
   }
+
+  return key;
 }

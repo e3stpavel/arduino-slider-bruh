@@ -14,6 +14,9 @@
 #include "helpers/PinDefinitionsAndMore.h"
 #include <IRremote.hpp>
 
+/* multithreading sorta */
+#include <Chrono.h>
+
 // # liquid crystal init
 LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
@@ -53,7 +56,7 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 LedControl lc = LedControl(DATA_PIN, CLK, CS, 1);
 
 // # global state declaration
-String GLOBAL_STATE;
+String GLOBAL_STATE = "";
 
 //// # global functions declaration goes here
 #include <funcs/on_remote_click.h>
@@ -104,6 +107,17 @@ void loop()
     on_remote_click();
   }*/
 
-  tsk br = edge_to_edge(2.5f);
-  Serial.println(br.status);
+  delay(500);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Choose us");
+  delay(1000);
+
+  char key = on_keypad_tap();
+  if(key == '2') {
+    tsk br = edge_to_edge(0.0f);
+    Serial.println(br.status);
+  }
+  
 }
