@@ -1,7 +1,7 @@
 // some local function to use 
 float input_speed(float in_speed)
 {
-  float out_speed;
+  float out_speed = 0;
   // write to LCD question and q-mark to MAX led
   // lcd
   lcd.clear();
@@ -36,7 +36,7 @@ float input_speed(float in_speed)
       keys = keys + key;
       //keys += key;
       length = keys.length();
-      Serial.print(length);
+      Serial.println(length);
 
       if (length > 0) {
         //print
@@ -51,7 +51,7 @@ float input_speed(float in_speed)
     i++;
   }
 
-  Serial.print(keys);
+  Serial.println(keys);
   out_speed = keys.toFloat();
 
   // TODO: remote controller
@@ -74,7 +74,7 @@ float input_speed(float in_speed)
 
 tsk edge_to_edge(float speed = 0)
 {
-  Serial.println(GLOBAL_STATE);
+  Serial.println("State " + GLOBAL_STATE);
 
   // local state declaration
   String local_state = ""; 
@@ -90,19 +90,19 @@ tsk edge_to_edge(float speed = 0)
   int distance_L = get_ultrasonic_distance(1);
   int distance_R = get_ultrasonic_distance(0);
 
-  Serial.println(distance_L);
-  Serial.println(distance_R);
+  Serial.println("Left" + distance_L);
+  Serial.println("Rigth" + distance_R);
 
   // debugging
   delay(2000);
 
-  if (distance_L >= 0 && distance_L < 3)
+  if (distance_L >= 0 && distance_L < 5)
   {
     // on the left side
     is_side = true;
     what_side = 'L';
   }
-  else if (distance_R >= 0 && distance_R < 3)
+  else if (distance_R >= 0 && distance_R < 5)
   {
     // on the right side
     is_side = true;
@@ -118,6 +118,7 @@ tsk edge_to_edge(float speed = 0)
     // if its in the right position, ask user speed and go to the opposite edge
     if (is_side)
     {
+      Serial.println("SIDE DEFINED ASK SPEED");
       speed = input_speed(speed);
 
       if (speed <= 0)
@@ -184,6 +185,7 @@ tsk edge_to_edge(float speed = 0)
 
       if (desicion == true)
       {
+        Serial.println("SIDE WAS NOT DEFINED - ASK SPEED");
         speed = input_speed(speed);
 
         if (speed <= 0)
@@ -205,7 +207,7 @@ tsk edge_to_edge(float speed = 0)
 
         // TODO: task4 call
         //// hero goes the task 4 call ////
-        Serial.print("TASK4");
+        Serial.println("TASK4");
         delay(1000);
         /// goes end of function check ///
 
@@ -223,6 +225,7 @@ tsk edge_to_edge(float speed = 0)
         lcd.print("Not on the edge");
         lcd.setCursor(0, 1);
         lcd.print("Error!");
+        delay(1000);
         // TODO: max
         // poka len`
 
@@ -294,10 +297,10 @@ tsk edge_to_edge(float speed = 0)
     
 
     delay(5000);
-    Serial.print(goto_side);
+    Serial.println(goto_side);
     // TODO: task1 call
     //// hero goes the task 1 call ////
-    Serial.print("TASK1");
+    Serial.println("TASK1");
     delay(1000);
     /// goes end of function check ///
 
@@ -305,6 +308,7 @@ tsk edge_to_edge(float speed = 0)
     // we are finished with movements
     // bring the global state back
     GLOBAL_STATE = local_state;
+    Serial.println(GLOBAL_STATE);
 
     // filling the return values
     executed.code = 0;
