@@ -1,13 +1,13 @@
 // some local function to use 
 float input_speed(float in_speed)
 {
-  float out_speed = in_speed;
+  float out_speed;
   // write to LCD question and q-mark to MAX led
   // lcd
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Input the speed");
-  lcd.setCursor(1, 0);
+  lcd.setCursor(0, 1);
   lcd.print("can be float");
   delay(5000);
   // TODO: max
@@ -15,17 +15,49 @@ float input_speed(float in_speed)
 
   // wait input from keypad and remote controller
   // keypad
-  char key = keypad.getKey();
-  String keys;
-  if (key)
-  {
-    keys += key;
-    out_speed = keys.toFloat();
+
+  bool is_enter = false;
+  String keys = "";
+  //char keys[16];
+  uint8_t i = 0;
+  int length = 0;
+  while (is_enter == false) {
+    char key = on_keypad_tap();
+
+    if (isprint(key)) {
+      if(key == 'A') {
+        is_enter = true;
+      } 
+
+      if(key == '*') {
+        key = '.';
+      }
+
+      keys = keys + key;
+      //keys += key;
+      length = keys.length();
+      Serial.print(length);
+
+      if (length > 0) {
+        //print
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        Serial.print("bb");
+        lcd.print(keys);
+      }
+    }
+
+    delay(100);
+    i++;
   }
+
+  Serial.print(keys);
+  out_speed = keys.toFloat();
+
   // TODO: remote controller
   // poka len`
 
-  delay(2000);
+  //delay(2000);
   Serial.println(out_speed);
   
   return out_speed;
@@ -50,7 +82,7 @@ tsk edge_to_edge(float speed = 0)
   // return declaration
   tsk executed;
 
-  // check if this piece of shit on the edge
+  // check if this on the edge
   bool is_side = false;
   char what_side;
 
@@ -116,35 +148,40 @@ tsk edge_to_edge(float speed = 0)
       lcd.setCursor(0, 0);
       lcd.print("Not on the edge");
       lcd.setCursor(0, 1);
-      lcd.print("go to? y/n");
+      lcd.print("go to? A/C");
       // TODO: max
       // poka len`
 
       // wait input from keypad and remote controller
       // keypad
-      char key = on_keypad_tap();
-      delay(1000);
-      if (!isblank(key))
+      
+      bool is_enter = false;
+
+      while (is_enter == false)
       {
-        Serial.println(key);
-        if (key == 'A')
+        char key = on_keypad_tap();
+
+        if (isprint(key))
         {
-          // accept
-          desicion = true;
+          if (key == 'A')
+          {
+            desicion = true;
+            is_enter = true;
+          }
+          else if (key == 'C') {
+            desicion = false;
+            is_enter = true;
+          }
         }
-        else if (key == 'C')
-        {
-          // cancel
-          desicion = false;
-        }
+        
       }
+
       // TODO: remote controller 
       // poka len`
 
       delay(1000);
       Serial.println(desicion);
 
-      // if he's insane, call task4's fucntion, if nah - say that he's ORBoIIOP
       if (desicion == true)
       {
         speed = input_speed(speed);
@@ -224,7 +261,7 @@ tsk edge_to_edge(float speed = 0)
     }
     else 
     {
-      // fuck off the function cuz position not defined
+      // decline the function cuz position not defined
 
       delay(2000);
 
