@@ -63,6 +63,8 @@ String GLOBAL_STATE = "";
 #include <funcs/on_keypad_tap.h>
 #include <funcs/get_ultrasonic_distance.h>
 
+#include <helpers/MaxRows.h>
+
 //// # tasks base structure goes here, should fit for everyone
 #include <structure.h>
 
@@ -116,8 +118,9 @@ void loop()
 
   char key = on_keypad_tap();
   if(key == '2') {
-    tsk br = edge_to_edge(0.0f);
-    Serial.println(br.status);
+    rows();
+    /*tsk br = edge_to_edge(0.0f);
+    Serial.println(br.status);*/
   }
   
 }
