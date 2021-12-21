@@ -58,7 +58,20 @@ float input_speed(float in_speed)
   out_speed = keys.toFloat();
 
   // TODO: remote controller
-  // poka len`
+  uint16_t data = IR_recieve_data();
+  Serial.println(data);
+  delay(1000);
+
+  // dev purposes
+  while(data != 0x10)
+  {
+    Serial.println(data);
+    delay(500);
+  }
+
+  /*if (data == 0x10) {
+    Serial.println("this btn!");
+  } */
 
   //delay(2000);
   Serial.println(out_speed);
@@ -335,7 +348,7 @@ tsk edge_to_edge(float speed = 0)
   lcd.print("Done");
   lcd.setCursor(0, 1);
   lcd.print("Status: OK");
-  
+
   // lc support added
   setOk();
   delay(1000);

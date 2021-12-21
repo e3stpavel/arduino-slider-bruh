@@ -67,6 +67,9 @@ String GLOBAL_STATE = "";
 #include <helpers/MaxRows.h>
 #include "helpers/MaxSetters.h"
 
+// irremote helper
+#include <helpers/IRRemoteReciever.h>
+
 //// # tasks base structure goes here, should fit for everyone
 #include <structure.h>
 
