@@ -9,13 +9,16 @@ float input_speed(float in_speed)
   lcd.print("Input the speed");
   lcd.setCursor(0, 1);
   lcd.print("can be float");
-  delay(5000);
-  // TODO: max
-  // poka len`
+  
+  // Maxon support
+  lc.clearDisplay(0);
+  setQuestionMark();
+
+  delay(1000);
 
   // wait input from keypad and remote controller
-  // keypad
 
+  // keypad
   bool is_enter = false;
   String keys = "";
   //char keys[16];
@@ -130,7 +133,10 @@ tsk edge_to_edge(float speed = 0)
         lcd.setCursor(0, 1);
         lcd.print("more than 0");
 
-        // TODO: lc support
+        // lc support
+        setExclamatoryMark();
+        delay(500);
+        setError();
 
         // filling the return values
         executed.code = 1;
@@ -150,8 +156,8 @@ tsk edge_to_edge(float speed = 0)
       lcd.print("Not on the edge");
       lcd.setCursor(0, 1);
       lcd.print("go to? A/C");
-      // TODO: max
-      // poka len`
+      // maxon support
+      setQuestionMark();
 
       // wait input from keypad and remote controller
       // keypad
@@ -197,7 +203,10 @@ tsk edge_to_edge(float speed = 0)
           lcd.setCursor(0, 1);
           lcd.print("more than 0");
 
-          // TODO: add lc support as well 
+          // added lc support as well
+          setExclamatoryMark();
+          delay(500);
+          setError();
 
           // filling the return values
           executed.code = 1;
@@ -226,8 +235,10 @@ tsk edge_to_edge(float speed = 0)
         lcd.setCursor(0, 1);
         lcd.print("Error!");
         delay(1000);
-        // TODO: max
-        // poka len`
+        // maxon support
+        setExclamatoryMark();
+        delay(500);
+        setError();
 
         // filling the return values
         executed.code = 3;
@@ -254,7 +265,10 @@ tsk edge_to_edge(float speed = 0)
         lcd.setCursor(0, 1);
         lcd.print("more than 0");
 
-        // TODO: lc support
+        // lc support added
+        setExclamatoryMark();
+        delay(500);
+        setError();
 
         // filling the return values
         executed.code = 1;
@@ -314,6 +328,17 @@ tsk edge_to_edge(float speed = 0)
     executed.code = 0;
     executed.status = "Success";
   }
+
+  // tell user about success
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Done");
+  lcd.setCursor(0, 1);
+  lcd.print("Status: OK");
+  
+  // lc support added
+  setOk();
+  delay(1000);
 
   return executed;
 }

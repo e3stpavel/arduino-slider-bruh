@@ -63,7 +63,9 @@ String GLOBAL_STATE = "";
 #include <funcs/on_keypad_tap.h>
 #include <funcs/get_ultrasonic_distance.h>
 
+// maxon support
 #include <helpers/MaxRows.h>
+#include "helpers/MaxSetters.h"
 
 //// # tasks base structure goes here, should fit for everyone
 #include <structure.h>
