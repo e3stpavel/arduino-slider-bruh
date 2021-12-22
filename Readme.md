@@ -30,4 +30,4 @@ To upload the project you just need to press `upload` button on the left bottom 
 ---
 
 ### Authors
-Powered by [@e3stpavel]("https://github.com/e3stpavel") and [@NewOkNo]("https://github.com/NewOkNo")
+Powered by [e3stpavel](https://github.com/e3stpavel) and [NewOkNo](https://github.com/NewOkNo)
