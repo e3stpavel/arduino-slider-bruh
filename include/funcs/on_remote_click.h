@@ -19,18 +19,11 @@ char on_remote_click()
   }
 
   Serial.println();
-
-  /*
-    * !!!Important!!! Enable receiving of the next value,
-    * since receiving has stopped after the end of the current received data packet.
-    */
   
   // Enable receiving of the next value
   IrReceiver.resume(); 
 
-  /*
-    * Finally, check the received data and perform actions according to the received command
-    */
+  // Check the received data and perform actions according to the received command
 
   //Serial.println(IrReceiver.decodedIRData.command);
 
@@ -93,6 +86,12 @@ char on_remote_click()
   {
     Serial.println("-");
     recieved = '-';
+  }
+  // TODO: dot handling
+  else if (IrReceiver.decodedIRData.command == 0x3C)
+  {
+    Serial.println('.');
+    recieved = '.';
   }
   else {
     Serial.println("no support");

@@ -18,57 +18,36 @@ float input_speed(float in_speed)
 
   // wait input from keypad and remote controller
 
-  // keypad
   bool is_enter = false;
   String keys = "";
-  //char keys[16];
   uint8_t i = 0;
   int length = 0;
-  while (is_enter == false) {
-    char key = on_keypad_tap();
-    char btn;
 
+  while (is_enter == false) {
+    // attempt to get keypad tap
+    char key = on_keypad_tap();
+
+    // attempt to get remote controller click
+    char btn;
     if (IrReceiver.decode()) 
     {
       btn = on_remote_click();
     }
-
-    if (isprint(btn))
-    {
-      if (btn == '+')
-      {
-        is_enter = true;
-      }
-      
-      if (btn == '.')
-      {
-        /* code */
-      }
-
-      keys = keys + btn;
-
-      length = keys.length();
-      
-      if (length > 0)
-      {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        Serial.print("bb");
-        lcd.print(keys);
-      }
-    }
     
-    if (isprint(key)) {
-      if(key == 'A') {
+    // was isprint() changed to isgraph()
+    if (isgraph(key) || isgraph(btn)) {
+      if(key == 'A' || btn == '+') {
         is_enter = true;
       } 
 
-      if(key == '*') {
+      if(key == '*' || btn == '.') {
         key = '.';
       }
 
-      keys = keys + key;
+      // TODO: could be a bug, need to check
+      keys = keys + key + btn;
       //keys += key;
+
       length = keys.length();
       Serial.println(length);
 
@@ -162,8 +141,10 @@ tsk edge_to_edge(float speed = 0)
         lcd.print("more than 0");
 
         // lc support
+        lc.clearDisplay(0);
         setExclamatoryMark();
         delay(500);
+        lc.clearDisplay(0);
         setError();
 
         // filling the return values
@@ -184,7 +165,9 @@ tsk edge_to_edge(float speed = 0)
       lcd.print("Not on the edge");
       lcd.setCursor(0, 1);
       lcd.print("go to? A/C");
+
       // maxon support
+      lc.clearDisplay(0);
       setQuestionMark();
 
       // wait input from keypad and remote controller
@@ -194,25 +177,31 @@ tsk edge_to_edge(float speed = 0)
 
       while (is_enter == false)
       {
+        // attempt to get keypad tap
         char key = on_keypad_tap();
 
-        if (isprint(key))
+        // attempt to get remote controller click
+        char btn;
+        if (IrReceiver.decode()) 
         {
-          if (key == 'A')
+          btn = on_remote_click();
+        }
+
+        // was isprint() changed to isgraph()
+        if (isgraph(key) || isgraph(btn))
+        {
+          if (key == 'A' || btn == '+')
           {
             desicion = true;
             is_enter = true;
           }
-          else if (key == 'C') {
+          else if (key == 'C' || btn == '-') {
             desicion = false;
             is_enter = true;
           }
         }
         
       }
-
-      // TODO: remote controller 
-      // poka len`
 
       delay(1000);
       Serial.println(desicion);
@@ -232,8 +221,10 @@ tsk edge_to_edge(float speed = 0)
           lcd.print("more than 0");
 
           // added lc support as well
+          lc.clearDisplay(0);
           setExclamatoryMark();
           delay(500);
+          lc.clearDisplay(0);
           setError();
 
           // filling the return values
@@ -263,9 +254,12 @@ tsk edge_to_edge(float speed = 0)
         lcd.setCursor(0, 1);
         lcd.print("Error!");
         delay(1000);
+
         // maxon support
+        lc.clearDisplay(0);
         setExclamatoryMark();
         delay(500);
+        lc.clearDisplay(0);
         setError();
 
         // filling the return values
@@ -294,8 +288,10 @@ tsk edge_to_edge(float speed = 0)
         lcd.print("more than 0");
 
         // lc support added
+        lc.clearDisplay(0);
         setExclamatoryMark();
         delay(500);
+        lc.clearDisplay(0);
         setError();
 
         // filling the return values
@@ -365,6 +361,7 @@ tsk edge_to_edge(float speed = 0)
   lcd.print("Status: OK");
 
   // lc support added
+  lc.clearDisplay(0);
   setOk();
   delay(1000);
 

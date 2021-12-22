@@ -67,9 +67,6 @@ String GLOBAL_STATE = "";
 #include <helpers/MaxRows.h>
 #include "helpers/MaxSetters.h"
 
-// irremote helper
-#include <helpers/IRRemoteReciever.h>
-
 //// # tasks base structure goes here, should fit for everyone
 #include <structure.h>
 
@@ -107,22 +104,25 @@ void loop()
 {
   // put your main code here, to run repeatedly:
 
-  /*on_keypad_tap();
-
-  if (IrReceiver.decode())
-  {
-    on_remote_click();
-  }*/
-
+  // must have
   delay(500);
 
+  // main function simulation kinda
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Choose us");
   delay(1000);
 
   char key = on_keypad_tap();
-  if(key == '2') {
+
+  char btn;
+  if (IrReceiver.decode())
+  {
+    btn = on_remote_click();
+  }
+  
+  if(key == '2' || btn == '2') {
+    // actual edge to edge function call
     tsk br = edge_to_edge(0.0f);
     Serial.println(br.status);
   }
