@@ -7,6 +7,7 @@ uint16_t IR_recieve_data()
     IrReceiver.printIRResultShort(&Serial);
     if (IrReceiver.decodedIRData.protocol == UNKNOWN) {
         // We have an unknown protocol here, print more info
+        Serial.println("unknows");
         IrReceiver.printIRResultRawFormatted(&Serial, true);
     }
     Serial.println();
@@ -22,11 +23,12 @@ uint16_t IR_recieve_data()
       */
     recieved_data = IrReceiver.decodedIRData.command;
     
-    /*if (IrReceiver.decodedIRData.command == 0x10) {
-        // do something
-    } else if (IrReceiver.decodedIRData.command == 0x11) {
-        // do something else
-    }*/
+    if (IrReceiver.decodedIRData.command == 0x10) {
+      Serial.println("0x10");
+    } 
+    else if (IrReceiver.decodedIRData.command == 0x11) {
+      Serial.println("0x11");
+    }
   }
 
   return recieved_data;

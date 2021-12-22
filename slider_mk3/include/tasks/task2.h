@@ -59,13 +59,13 @@ float input_speed(float in_speed)
 
   // TODO: remote controller
   uint16_t data = IR_recieve_data();
-  Serial.println(data);
-  delay(1000);
+  /*Serial.println(data);
+  delay(1000);*/
 
   // dev purposes
   while(data != 0x10)
   {
-    Serial.println(data);
+    Serial.println("dev " + data);
     delay(500);
   }
 
