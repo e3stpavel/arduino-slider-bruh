@@ -27,6 +27,11 @@ float input_speed(float in_speed)
   while (is_enter == false) {
     char key = on_keypad_tap();
 
+    if (IrReceiver.decode()) 
+    {
+      on_remote_click();
+    }
+
     if (isprint(key)) {
       if(key == 'A') {
         is_enter = true;
@@ -56,22 +61,6 @@ float input_speed(float in_speed)
 
   Serial.println(keys);
   out_speed = keys.toFloat();
-
-  // TODO: remote controller
-  uint16_t data = IR_recieve_data();
-  /*Serial.println(data);
-  delay(1000);*/
-
-  // dev purposes
-  while(data != 0x10)
-  {
-    Serial.println("dev " + data);
-    delay(500);
-  }
-
-  /*if (data == 0x10) {
-    Serial.println("this btn!");
-  } */
 
   //delay(2000);
   Serial.println(out_speed);

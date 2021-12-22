@@ -29,12 +29,15 @@ void on_remote_click()
   /*
     * Finally, check the received data and perform actions according to the received command
     */
-  if (IrReceiver.decodedIRData.command == 0x10) 
+
+  Serial.println(IrReceiver.decodedIRData.command);
+  
+  /*if (IrReceiver.decodedIRData.command == 0x10) 
   {
     // do something
   } 
   else if (IrReceiver.decodedIRData.command == 0x11) 
   {
     // do something else
-  }
+  }*/
 }

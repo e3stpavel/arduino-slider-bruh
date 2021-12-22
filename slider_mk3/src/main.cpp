@@ -97,7 +97,7 @@ void setup()
 
   // # initialize the remote controller
   IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK, USE_DEFAULT_FEEDBACK_LED_PIN);
-  Serial.println(IR_RECEIVE_PIN);
+  //Serial.println(IR_RECEIVE_PIN);
 
   // # begin serial monitor
   Serial.begin(9600);
@@ -123,9 +123,8 @@ void loop()
 
   char key = on_keypad_tap();
   if(key == '2') {
-    rows();
-    /*tsk br = edge_to_edge(0.0f);
-    Serial.println(br.status);*/
+    tsk br = edge_to_edge(0.0f);
+    Serial.println(br.status);
   }
   
 }
