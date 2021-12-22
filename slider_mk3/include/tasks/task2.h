@@ -26,12 +26,38 @@ float input_speed(float in_speed)
   int length = 0;
   while (is_enter == false) {
     char key = on_keypad_tap();
+    char btn;
 
     if (IrReceiver.decode()) 
     {
-      on_remote_click();
+      btn = on_remote_click();
     }
 
+    if (isprint(btn))
+    {
+      if (btn == '+')
+      {
+        is_enter = true;
+      }
+      
+      if (btn == '.')
+      {
+        /* code */
+      }
+
+      keys = keys + btn;
+
+      length = keys.length();
+      
+      if (length > 0)
+      {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        Serial.print("bb");
+        lcd.print(keys);
+      }
+    }
+    
     if (isprint(key)) {
       if(key == 'A') {
         is_enter = true;

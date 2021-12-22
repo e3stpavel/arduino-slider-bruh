@@ -5,7 +5,7 @@
  * @returns void
  */
 
-void on_remote_click() 
+void gg() 
 {
   // Print a short summary of received data
   IrReceiver.printIRResultShort(&Serial);
@@ -31,12 +31,58 @@ void on_remote_click()
     */
 
   Serial.println(IrReceiver.decodedIRData.command);
-  /*if (IrReceiver.decodedIRData.command == 0x10) 
+
+  if (IrReceiver.decodedIRData.command == 0x16) 
   {
-    // do something
-  } 
-  else if (IrReceiver.decodedIRData.command == 0x11) 
+    Serial.println("0");
+  }
+  else if (IrReceiver.decodedIRData.command == 0xC)
   {
-    // do something else
-  }*/
+    Serial.println("1");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x18)
+  {
+    Serial.println("2");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x5E)
+  {
+    Serial.println("3");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x8)
+  {
+    Serial.println("4");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x1C)
+  {
+    Serial.println("5");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x5A)
+  {
+    Serial.println("6");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x42)
+  {
+    Serial.println("7");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x52)
+  {
+    Serial.println("8");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x4A)
+  {
+    Serial.println("9");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x15)
+  {
+    Serial.println("+");
+  }
+  else if (IrReceiver.decodedIRData.command == 0x7)
+  {
+    Serial.println("-");
+  }
+  else {
+    Serial.println("no support");
+  }
+
+  
 }
