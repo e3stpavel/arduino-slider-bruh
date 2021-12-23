@@ -115,9 +115,17 @@ void loop()
 
   char key = on_keypad_tap();
 
-  char btn = on_remote_click();
+  char btn;
+  if (IrReceiver.decode()) 
+  {
+    btn = on_remote_click();
+  }
   
   if(key == '2' || btn == '2') {
+    Serial.println(GLOBAL_STATE);
+    btn = (char)0;
+    key = (char)0;
+
     // actual edge to edge function call
     tsk br = edge_to_edge(0.0f);
     Serial.println(br.status);

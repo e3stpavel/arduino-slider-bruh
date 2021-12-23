@@ -26,7 +26,11 @@ float input_speed(float in_speed)
     char key = on_keypad_tap();
 
     // attempt to get remote controller click
-    char btn = on_remote_click();
+    char btn;
+    if (IrReceiver.decode()) 
+    {
+      btn = on_remote_click();
+    }
     
     // was isprint() changed to isgraph()
     if (isprint(key) || isprint(btn)) {
@@ -61,6 +65,9 @@ float input_speed(float in_speed)
         lcd.print(keys);
       }
     }
+
+    key = (char)0;
+    btn = (char)0;
 
     delay(100);
   }
@@ -182,7 +189,11 @@ tsk edge_to_edge(float speed = 0)
         char key = on_keypad_tap();
 
         // attempt to get remote controller click
-        char btn = on_remote_click();
+        char btn;
+        if (IrReceiver.decode()) 
+        {
+          btn = on_remote_click();
+        }
 
         // was isprint() changed to isgraph()
         if (isgraph(key) || isgraph(btn))
@@ -191,10 +202,12 @@ tsk edge_to_edge(float speed = 0)
           {
             desicion = true;
             is_enter = true;
+            btn = (char)0;
           }
           else if (key == 'C' || btn == '-') {
             desicion = false;
             is_enter = true;
+            btn = (char)0;
           }
         }
         
@@ -233,6 +246,10 @@ tsk edge_to_edge(float speed = 0)
         // TODO: task4 call
         //// hero goes the task 4 call ////
         Serial.println("TASK4");
+
+        lc.clearDisplay(0);
+        setLoading()
+
         delay(1000);
         /// goes end of function check ///
 
@@ -336,14 +353,12 @@ tsk edge_to_edge(float speed = 0)
     // TODO: task1 call
     //// hero goes the task 1 call ////
     Serial.println("TASK1");
+
+    lc.clearDisplay(0);
+    setLoading();
+
     delay(1000);
     /// goes end of function check ///
-
-
-    // we are finished with movements
-    // bring the global state back
-    GLOBAL_STATE = local_state;
-    Serial.println(GLOBAL_STATE);
 
     // filling the return values
     executed.code = 0;
@@ -361,6 +376,20 @@ tsk edge_to_edge(float speed = 0)
   lc.clearDisplay(0);
   setOk();
   delay(1000);
+  lc.clearDisplay(0);
+
+  // we are finished with movements
+  // bring the global state back
+  if (local_state.length() > 1)
+  {
+    GLOBAL_STATE = local_state;
+  }
+  else 
+  {
+    GLOBAL_STATE = "";
+  }
+
+  Serial.println("task2 state: " + GLOBAL_STATE);
 
   return executed;
 }
