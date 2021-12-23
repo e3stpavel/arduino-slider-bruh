@@ -155,6 +155,8 @@ tsk edge_to_edge(float speed = 0)
         lc.clearDisplay(0);
         setError();
 
+        GLOBAL_STATE = local_state;
+
         // filling the return values
         executed.code = 1;
         executed.status = "Incorrect speed format!";
@@ -237,6 +239,8 @@ tsk edge_to_edge(float speed = 0)
           lc.clearDisplay(0);
           setError();
 
+          GLOBAL_STATE = local_state;
+
           // filling the return values
           executed.code = 1;
           executed.status = "Incorrect speed format!";
@@ -276,6 +280,8 @@ tsk edge_to_edge(float speed = 0)
         lc.clearDisplay(0);
         setError();
 
+        GLOBAL_STATE = local_state;
+
         // filling the return values
         executed.code = 3;
         executed.status = "Incorrect position for operating!";
@@ -308,6 +314,8 @@ tsk edge_to_edge(float speed = 0)
         lc.clearDisplay(0);
         setError();
 
+        GLOBAL_STATE = local_state;
+
         // filling the return values
         executed.code = 1;
         executed.status = "Incorrect speed format!";
@@ -319,6 +327,8 @@ tsk edge_to_edge(float speed = 0)
       // decline the function cuz position not defined
 
       delay(2000);
+
+      GLOBAL_STATE = local_state;
 
       // filling the return values
       executed.code = 3;
@@ -375,20 +385,14 @@ tsk edge_to_edge(float speed = 0)
   // lc support added
   lc.clearDisplay(0);
   setOk();
-  delay(1000);
+  delay(3000);
   lc.clearDisplay(0);
 
   // we are finished with movements
   // bring the global state back
-  if (local_state != "")
-  {
-    GLOBAL_STATE = local_state;
-  }
-  else 
-  {
-    GLOBAL_STATE = "";
-  }
 
+  // TODO: Dont clear the State from cancel
+  GLOBAL_STATE = local_state;
   Serial.println("task2 state: " + GLOBAL_STATE);
 
   return executed;

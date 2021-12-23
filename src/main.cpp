@@ -125,16 +125,14 @@ void loop()
       btn = on_remote_click();
     }
 
-    if(key == '2' || btn == '2') {
+    // TODO: btn == '2', remote controller need to have a garbage collector bruh
+    if(key == '2' ) {
       Serial.println("main: " + GLOBAL_STATE);
 
       // actual edge to edge function call
       tsk br = edge_to_edge(0.0f);
       Serial.println(br.status);
     }
-
-    btn = (char)0;
-    key = (char)0;
   }
   else
   {
