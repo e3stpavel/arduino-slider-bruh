@@ -20,22 +20,16 @@ float input_speed(float in_speed)
 
   bool is_enter = false;
   String keys = "";
-  uint8_t i = 0;
-  int length = 0;
 
   while (is_enter == false) {
     // attempt to get keypad tap
     char key = on_keypad_tap();
 
     // attempt to get remote controller click
-    char btn;
-    if (IrReceiver.decode()) 
-    {
-      btn = on_remote_click();
-    }
+    char btn = on_remote_click();
     
     // was isprint() changed to isgraph()
-    if (isgraph(key) || isgraph(btn)) {
+    if (isprint(key) || isprint(btn)) {
       if(key == 'A' || btn == '+') {
         is_enter = true;
       } 
@@ -45,10 +39,18 @@ float input_speed(float in_speed)
       }
 
       // TODO: could be a bug, need to check
-      keys = keys + key + btn;
+      if (isgraph(key))
+      {
+        keys = keys + key;
+      }
+      else if (isgraph(btn))
+      {
+        keys = keys + btn;
+      }
+      
       //keys += key;
 
-      length = keys.length();
+      int length = keys.length();
       Serial.println(length);
 
       if (length > 0) {
@@ -61,7 +63,6 @@ float input_speed(float in_speed)
     }
 
     delay(100);
-    i++;
   }
 
   Serial.println(keys);
@@ -181,11 +182,7 @@ tsk edge_to_edge(float speed = 0)
         char key = on_keypad_tap();
 
         // attempt to get remote controller click
-        char btn;
-        if (IrReceiver.decode()) 
-        {
-          btn = on_remote_click();
-        }
+        char btn = on_remote_click();
 
         // was isprint() changed to isgraph()
         if (isgraph(key) || isgraph(btn))

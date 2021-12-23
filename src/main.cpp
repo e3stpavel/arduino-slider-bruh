@@ -115,11 +115,7 @@ void loop()
 
   char key = on_keypad_tap();
 
-  char btn;
-  if (IrReceiver.decode())
-  {
-    btn = on_remote_click();
-  }
+  char btn = on_remote_click();
   
   if(key == '2' || btn == '2') {
     // actual edge to edge function call
