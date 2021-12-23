@@ -380,7 +380,7 @@ tsk edge_to_edge(float speed = 0)
 
   // we are finished with movements
   // bring the global state back
-  if (local_state.length() > 1)
+  if (local_state != "")
   {
     GLOBAL_STATE = local_state;
   }
