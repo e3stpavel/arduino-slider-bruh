@@ -248,7 +248,7 @@ tsk edge_to_edge(float speed = 0)
         Serial.println("TASK4");
 
         lc.clearDisplay(0);
-        setLoading()
+        //setLoading()
 
         delay(1000);
         /// goes end of function check ///
@@ -355,7 +355,7 @@ tsk edge_to_edge(float speed = 0)
     Serial.println("TASK1");
 
     lc.clearDisplay(0);
-    setLoading();
+    //setLoading();
 
     delay(1000);
     /// goes end of function check ///

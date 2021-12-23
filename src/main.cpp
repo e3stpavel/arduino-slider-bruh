@@ -113,22 +113,32 @@ void loop()
   lcd.print("Choose us");
   delay(1000);
 
-  char key = on_keypad_tap();
-
-  char btn;
-  if (IrReceiver.decode()) 
-  {
-    btn = on_remote_click();
-  }
   
-  if(key == '2' || btn == '2') {
-    Serial.println(GLOBAL_STATE);
+  
+  if (GLOBAL_STATE == "")
+  {
+    char key = on_keypad_tap();
+
+    char btn;
+    if (IrReceiver.decode()) 
+    {
+      btn = on_remote_click();
+    }
+
+    if(key == '2' || btn == '2') {
+      Serial.println("main: " + GLOBAL_STATE);
+
+      // actual edge to edge function call
+      tsk br = edge_to_edge(0.0f);
+      Serial.println(br.status);
+    }
+
     btn = (char)0;
     key = (char)0;
-
-    // actual edge to edge function call
-    tsk br = edge_to_edge(0.0f);
-    Serial.println(br.status);
+  }
+  else
+  {
+    Serial.println("state br");
   }
   
 }

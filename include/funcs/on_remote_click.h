@@ -87,7 +87,6 @@ char on_remote_click()
     Serial.println("-");
     recieved = '-';
   }
-  // TODO: dot handling
   else if (IrReceiver.decodedIRData.command == 0x9)
   {
     Serial.println('.');
